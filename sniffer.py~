@@ -1,0 +1,18 @@
+import pcap, dpkt
+
+def print_packet(pkt_len, data, time_stamp):
+    if not data:
+        return
+
+    
+
+p = pcap.pcapObject()
+dev = pcap.lookupdev()
+p.open_live('wlan0', 1024, 1, 100)
+
+try:
+    while 1:
+        p.dispatch(1, print_packet)
+
+except KeyboardInterrupt:
+    print 'shutting down'
